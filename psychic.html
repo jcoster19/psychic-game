@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title> The Psychic Game </title>
+
+</head>
+
+<body>
+
+<h1> The Pyschic Game </h1>
+
+<script type="text/javascript">
+	var guesses = 0;
+   
+   var message = "Guess what letter I am thinking of";
+   
+   var letters = [
+               "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o",
+               "p","q","r","s","t","u","v","w","x","y","z"
+               ];
+   
+   var letterToGuess = "";
+
+   
+   var lettersGuessed;
+  
+   var letterIndex = Math.floor(Math.random() * letters.length);
+
+	letterToGuess = letters[letterIndex];
+
+	var gameOver = false;
+
+
+	window.addEventListener("keyup",eventKeyPressed,true);
+
+
+   function pickletter() {
+      var letterIndex = Math.floor(Math.random() * letters.length);
+      letterToGuess = letters[letterIndex];
+      guesses = 0;
+      lettersGuessed = [];
+      gameOver = false;
+      }
+
+   function eventKeyPressed(e) {
+      if (!gameOver) {
+         var letterPressed = String.fromCharCode(e.keyCode);
+         letterPressed = letterPressed.toLowerCase();
+         guesses++;
+         lettersGuessed.push(letterPressed);
+
+         if (letterPressed == letterToGuess) {
+            gameOver = true;
+         } else {
+
+            letterIndex = letters.indexOf(letterToGuess);
+            guessIndex = letters.indexOf(letterPressed);
+            Debugger.log(guessIndex);
+            if (guessIndex < 0) {
+               higherOrLower = "That is not a letter";
+            } else if (guessIndex > letterIndex) {
+               higherOrLower = "Lower";
+            } else {
+               higherOrLower = "Higher";
+            }
+
+         }
+         
+        
+   }
+
+
+</script>
